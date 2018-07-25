@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_lista_alunos_media"
+        android:icon="@android:drawable/arrow_up_float"
+        android:title="Media"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menu_lista_alunos_provas"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="Provas"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_lista_alunos_mapa"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="Mapa"
+        app:showAsAction="never"
+        />
+
+</menu>
