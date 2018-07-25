@@ -2,8 +2,12 @@ package br.com.caelum.contato;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +34,14 @@ public class ListActivity extends AppCompatActivity {
     private ListView lista;
     private List<Aluno> listaAlunos;
 
+    private BroadcastReceiver bat = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Integer valor = intent.getIntExtra("level", 0);
+            Toast.makeText(context, valor + "%", Toast.LENGTH_LONG).show();
+        }
+    };
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +51,7 @@ public class ListActivity extends AppCompatActivity {
         this.lista = (ListView) findViewById(R.id.lista);
         Permissoes.fazPermissao(this);
 
-
-        //registerForContextMenu(lista);
+        registerReceiver(bat, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
 
         this.lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -86,6 +97,21 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public String getBatteryLevel() {
+        Intent batteryIntent = registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+        if(level == -1 || scale == -1) {
+            Float ret = 50.0f;
+            return ret.toString();
+        }
+
+        Float ret = ((float)level / (float)scale) * 100.0f;
+
+        return ret.toString();
     }
 
     @Override

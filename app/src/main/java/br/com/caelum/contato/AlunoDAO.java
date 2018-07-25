@@ -51,6 +51,17 @@ public class AlunoDAO extends SQLiteOpenHelper {
 
     }
 
+    public boolean isAluno(String tel){
+        String[] params = {tel};
+
+        Cursor rawQuery = getReadableDatabase()
+                .rawQuery("SELECT telefone FROM alunos WHERE telefone = ?", params);
+        int total = rawQuery.getCount();
+        rawQuery.close();
+
+        return total > 0;
+    }
+
     public void salva(Aluno aluno)
     {
         ContentValues values = new ContentValues();

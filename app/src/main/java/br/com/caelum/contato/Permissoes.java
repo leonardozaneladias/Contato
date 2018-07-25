@@ -25,6 +25,7 @@ public class Permissoes {
                 Manifest.permission.INTERNET,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.BATTERY_STATS,
                 Manifest.permission.CAMERA};
         for (String permissao : permissoes) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
