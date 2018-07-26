@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.contato.converter.AlunoConverter;
+import br.com.caelum.contato.service.PegaMediaTask;
+import br.com.caelum.contato.service.WebClient;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -77,7 +79,6 @@ public class ListActivity extends AppCompatActivity {
         });
 
         /*
-
         this.lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -85,7 +86,8 @@ public class ListActivity extends AppCompatActivity {
                 Toast.makeText(ListActivity.this, "Nome: "+ aluno.getNome(), Toast.LENGTH_SHORT).show();
                 return false;
             }
-        });*/
+        });
+        */
 
         FloatingActionButton botao = (FloatingActionButton) findViewById(R.id.button_new);
         botao.setOnClickListener(new View.OnClickListener() {
@@ -97,21 +99,6 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public String getBatteryLevel() {
-        Intent batteryIntent = registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-        int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-
-        if(level == -1 || scale == -1) {
-            Float ret = 50.0f;
-            return ret.toString();
-        }
-
-        Float ret = ((float)level / (float)scale) * 100.0f;
-
-        return ret.toString();
     }
 
     @Override
@@ -148,13 +135,8 @@ public class ListActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menu_lista_alunos_media:
-                AlunoDAO dao = new AlunoDAO(this);
-                List<Aluno> alunos = dao.getLista();
-                dao.close();
 
-                String json = new AlunoConverter().toJSON(alunos);
-
-                Toast.makeText(this, json, Toast.LENGTH_LONG).show();
+                new PegaMediaTask(this, item).execute();
 
         }
         return true;
