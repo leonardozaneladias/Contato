@@ -137,6 +137,12 @@ public class ListActivity extends AppCompatActivity {
             case R.id.menu_lista_alunos_media:
 
                 new PegaMediaTask(this, item).execute();
+                break;
+
+            case R.id.menu_lista_alunos_provas:
+
+                Intent intent = new Intent(this, ProvasActivity.class);
+                startActivity(intent);
 
         }
         return true;
