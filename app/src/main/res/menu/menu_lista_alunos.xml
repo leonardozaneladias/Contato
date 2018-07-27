@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_lista_alunos_media"
-        android:icon="@android:drawable/arrow_up_float"
+        android:icon="@android:drawable/btn_star"
         android:title="Media"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/menu_lista_alunos_provas"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@android:drawable/checkbox_on_background"
         android:title="Provas"
-        app:showAsAction="never"
+        app:showAsAction="always"
         />
 
     <item

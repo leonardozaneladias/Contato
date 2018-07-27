@@ -1,9 +1,10 @@
 package br.com.caelum.contato;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Provas {
+public class Provas implements Serializable {
 
     private String data;
     private String materia;
@@ -21,7 +22,6 @@ public class Provas {
         return  materia;
     }
 
-
     public List<String> getTopicos() {
         return topicos;
     }
@@ -30,6 +30,17 @@ public class Provas {
         this.topicos = topicos;
     }
 
-    public void getTopicos(List<String> strings) {
+
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getMateria() {
+        return materia;
     }
 }

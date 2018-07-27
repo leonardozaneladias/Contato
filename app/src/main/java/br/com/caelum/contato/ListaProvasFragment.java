@@ -3,6 +3,7 @@ package br.com.caelum.contato;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +41,8 @@ public class ListaProvasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Provas selecinada = (Provas) adapterView.getItemAtPosition(i);
-
-                Toast.makeText(getActivity(), "Provas selecionada:" + selecinada, Toast.LENGTH_LONG).show();
+                ProvasActivity activity = (ProvasActivity) getActivity();
+                activity.lidaComProvas(selecinada);
             }
         });
 
