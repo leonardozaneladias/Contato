@@ -143,6 +143,13 @@ public class ListActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, ProvasActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.menu_lista_alunos_mapa:
+
+                Intent intentMapa = new Intent(this, MostraAlunosActivity.class);
+                startActivity(intentMapa);
+                break;
 
         }
         return true;

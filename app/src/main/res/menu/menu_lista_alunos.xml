@@ -19,7 +19,7 @@
         android:id="@+id/menu_lista_alunos_mapa"
         android:icon="@android:drawable/ic_dialog_map"
         android:title="Mapa"
-        app:showAsAction="never"
+        app:showAsAction="always"
         />
 
 </menu>
